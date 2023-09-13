@@ -1,14 +1,14 @@
 import  Axios  from "axios"
 import { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-// import { countContext } from "../../context/counterStore";
-
+import {toggleFavorite} from '../../Redux/favorite'
 export default function Movies (){
 
-  //  test context
+  let isFavorite = false;
+  const dispatch = useDispatch();
+  let favorites = useSelector((state) => state.favorite.favorites);
 
-  // let {counter}=useContext(countContext);
-  // ____________________________________-
 let [movie,setmovie]=useState([])
 
  async function getmovies(){
@@ -26,11 +26,17 @@ useEffect(()=>{
   getmovies()
 },[])
 
+
+
+const toggelFavorite = (mov)=>{
+    isFavorite =true ;
+  dispatch(toggleFavorite(mov))
+
+}
+
+
   return<>
-{/* test context */}
-{/* 
-<div>count:{counter}</div> */}
-{/* ______________________________________ */}
+
 
 
  <div className="row">
@@ -41,7 +47,13 @@ useEffect(()=>{
 <Link to={ `/itemdetails/${mov.id}`}>
 <img className="w-100" src={`http://image.tmdb.org/t/p/w500`+mov.poster_path} alt="" style={{height:400}} />
 </Link>
+{!isFavorite?
+<i className="fa-regular fa-star fa-xl" style={{color: 'red',backgroundColor:'white'}} onClick={()=>{toggelFavorite(mov)}}></i>:
+<i className="fa-solid fa-star fa-xl" style={{color: '#e7131d'}} onClick={()=>{toggelFavorite(mov)}}></i>
+}
+
 <h5 style={{textAlign:"center",color:"blue"}} className='border p-2 m-2'>{mov.title}</h5>
+
 </div>
 
 </div>)}

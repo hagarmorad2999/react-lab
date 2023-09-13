@@ -37,17 +37,19 @@ let routers =createBrowserRouter([
 
 function App() {
   return <>
-  {/* هنا بربط بين الرياكت والريدكس */}
+
   {/* redux */}
-
   <Provider store={store}>
-  {/* context */}
+  <RouterProvider router={routers}/>
+  </Provider>
 
+
+  {/* context */}
 {/* <LanguageContextProvide> */}
-<RouterProvider router={routers}/>
+{/* <RouterProvider router={routers}/> */}
 {/* </LanguageContextProvide> */}
 
-  </Provider>
+
   </>
 
 }

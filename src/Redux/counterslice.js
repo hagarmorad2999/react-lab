@@ -9,7 +9,7 @@ reducers:{
 increase:(state)=>{state.counter+=1},
 decrease:(state)=>{state.counter-=1},
 test:(state,action)=>{
-    // بستقبل هنا الحاجه اللي جايه ليا لما بعمل كول للفانكشن في المكان اللي بستخدمها فيه
+  
     state.counter+=action.payload;
 },
 }

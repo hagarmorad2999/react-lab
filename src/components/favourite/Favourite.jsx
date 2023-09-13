@@ -1,26 +1,54 @@
-
-// import { useDispatch, useSelector } from "react-redux"
-// // import style from "./Favourite.module.css"
-// import { increase , test } from "../../Redux/counterslice";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {toggleFavorite} from '../../Redux/favorite'
 
 export default function Favourite (){
-// test redux 
+  let isFavorite = false;
+  const dispatch = useDispatch();
+  let movie = useSelector((state) => state.favorite.favorites);
 
-//  let {counter}= useSelector((state)=>state.counter)
-// let dispatch=useDispatch();
+
+  const toggelFavorite = (mov)=>{
+    dispatch(toggleFavorite(mov))
+  
+  }
   return<>
 
-  {/* test redux  */}
-   {/* <h4>counter:{counter}</h4>
-   <button onClick={()=>dispatch(increase())}>+</button>
-   <button onClick={()=>dispatch(test(10))}>++++</button> */}
-  {/* ________________________________ */}
 
-  {/* <p>favourite work</p> */}
-  {/* style in react whith external file */}
-  {/* <h3 className={style.test}> Test CSS style </h3>
+<div className="row">
+{movie.map((mov,index)=><div key={index}className="col-md-3  g-3 shadow">
 
-  <h3 className={`${style.test} ${style.two}`}> Test if i want add tow classes </h3> */}
-  {/* _______________________________ */}
+<div>
+
+<Link to={ `/itemdetails/${mov.id}`}>
+<img className="w-100" src={`http://image.tmdb.org/t/p/w500`+mov.poster_path} alt="" style={{height:400}} />
+</Link>
+{isFavorite?
+<i className="fa-regular fa-star fa-xl" style={{color: 'red'}} onClick={()=>{toggelFavorite(mov)}}></i>:
+<i className="fa-solid fa-star fa-xl" style={{color: '#e7131d'}} onClick={()=>{toggelFavorite(mov)}}></i>
+}
+
+<h5 style={{textAlign:"center",color:"blue"}} className='border p-2 m-2'>{mov.title}</h5>
+
+</div>
+
+</div>)}
+
+
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </>
   }

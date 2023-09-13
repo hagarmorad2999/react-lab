@@ -15,12 +15,14 @@ function ChangeLanguage(){
         setlanguage('AR'); 
     }
 }
-
+console.log(props.children);
+console.log(props.children);
 
 
 return <LanguageContext.Provider value={{language,ChangeLanguage}}>
 
 {props.children}
+
 </LanguageContext.Provider>
 
 }
